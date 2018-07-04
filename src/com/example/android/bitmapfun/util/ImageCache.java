@@ -24,6 +24,7 @@ import android.support.v4.util.LruCache;
 import android.util.Log;
 
 import com.example.android.bitmapfun.BuildConfig;
+import com.example.android.bitmapfun.ui.RetainFragment;
 
 import java.io.File;
 
@@ -40,31 +41,31 @@ public class ImageCache {
     private static final int DEFAULT_DISK_CACHE_SIZE = 1024 * 1024 * 10; // 10MB
 
     // Compression settings when writing images to disk cache
-    // 图像写入磁盘高速缓存时的压缩设置
+    // ?????????????????????????
     private static final CompressFormat DEFAULT_COMPRESS_FORMAT = CompressFormat.JPEG;
     private static final int DEFAULT_COMPRESS_QUALITY = 70;
 
     // Constants to easily toggle various caches
-    //使用常量来轻松切换不同的高速缓存
+    //??????????????????????????
     private static final boolean DEFAULT_MEM_CACHE_ENABLED = true;
     private static final boolean DEFAULT_DISK_CACHE_ENABLED = true;
     private static final boolean DEFAULT_CLEAR_DISK_CACHE_ON_START = false;
 
     /** 
-     * 磁盘缓存
+     * ???????
      */
     private DiskLruCache mDiskCache;
     /**
-     * 内存缓存
+     * ?????
      */
     private LruCache<String, Bitmap> mMemoryCache;
 
     /**
      * Creating a new ImageCache object using the specified parameters.
-     * 创建新ImageCache的对象使用指定的参数。
+     * ??????ImageCache??????????????????
      *
      * @param context The context to use
-     * @param cacheParams The cache parameters to use to initialize the cache 使用ImageCacheParams参数初始化缓存
+     * @param cacheParams The cache parameters to use to initialize the cache ???ImageCacheParams?????????????
      */
     public ImageCache(Context context, ImageCacheParams cacheParams) {
         init(context, cacheParams);
@@ -72,20 +73,20 @@ public class ImageCache {
 
     /**
      * Creating a new ImageCache object using the default parameters.
-     * 创建一个新的ImageCache对象，使用默认参数。
+     * ??????????ImageCache???????????????
      * 
      * @param context The context to use
-     * @param uniqueName A unique name that will be appended to the cache directory ｜uniqueName一个独特的名字，将被追加到缓存目录
+     * @param uniqueName A unique name that will be appended to the cache directory ??uniqueName???????????????????????????
      */
     public ImageCache(Context context, String uniqueName) {
         init(context, new ImageCacheParams(uniqueName));
     }
 
     /**
-     * Find and return an existing ImageCache stored in a {@link RetainFragment}, 
-     * 查找并返回现有存储在 {@link RetainFragment} 的ImageCache
+     * Find and return an existing ImageCache stored in a {@link RetainFragment},
+     * ???????????????? {@link RetainFragment} ??ImageCache
      * if not found a new one is created with defaults and saved to a {@link RetainFragment}.
-     * 如果没有找到，创建一个新的默认和保存到{@link RetainFragment}
+     * ????????????????????????????{@link RetainFragment}
      *
      * @param activity The calling {@link FragmentActivity}
      * @param uniqueName A unique name to append to the cache directory
@@ -98,9 +99,9 @@ public class ImageCache {
 
     /**
      * Find and return an existing ImageCache stored in a {@link RetainFragment}, 
-     * 查找并返回现有存储在{@link RetainFragment}对象中的ImageCache
+     * ????????????????{@link RetainFragment}???????ImageCache
      * if not found a new one is created using the supplied params and saved to a {@link RetainFragment}.
-     * 如果没有找到一个新的使用所提供的params创建和保存到{@link RetainFragment}对象中。
+     * ????????????????????????params?????????{@link RetainFragment}???????
      *
      * @param activity The calling {@link FragmentActivity}
      * @param cacheParams The cache parameters to use if creating the ImageCache
@@ -127,7 +128,7 @@ public class ImageCache {
 
     /**
      * Initialize the cache, providing all parameters.
-     * 初始化缓存，提供的所有参数。
+     * ??????????????????????
      * @param context The context to use
      * @param cacheParams The cache parameters to initialize the cache
      */
