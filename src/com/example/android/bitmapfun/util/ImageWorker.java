@@ -16,6 +16,7 @@
 
 package com.example.android.bitmapfun.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -37,8 +38,8 @@ import java.lang.ref.WeakReference;
  * ImageView. It handles things like using a memory and disk cache, running the work in a background
  * thread and setting a placeholder image.
  * 
- * Õâ¸öÀà·â×°ÆðÀ´Íê³ÉÒ»Ð©ÈÎÒâ³¤Ê±¼äÔËÐÐµÄ¹¤×÷ => µ±¼ÓÔØÒ»¸öÎ»Í¼µ½Ò»¸öImageView¡£
- * Ëü¿ÉÒÔ´¦ÀíµÄÊÂÇé:Ê¹ÓÃµÄÄÚ´æºÍ´ÅÅÌ»º´æ£¬¹¤×÷ÔÚºóÌ¨Ïß³Ì£¬²¢ÉèÖÃÒ»¸öÕ¼Î»·ûÍ¼Ïñ¡£
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ð©ï¿½ï¿½ï¿½â³¤Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ¹ï¿½ï¿½ï¿½ => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Î»Í¼ï¿½ï¿½Ò»ï¿½ï¿½ImageViewï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:Ê¹ï¿½Ãµï¿½ï¿½Ú´ï¿½Í´ï¿½ï¿½Ì»ï¿½ï¿½æ£¬ï¿½ï¿½ï¿½ï¿½ï¿½Úºï¿½Ì¨ï¿½ß³Ì£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Õ¼Î»ï¿½ï¿½Í¼ï¿½ï¿½
  */
 public abstract class ImageWorker {
     private static final String TAG = "ImageWorker";
@@ -57,11 +58,11 @@ public abstract class ImageWorker {
     }
 
     /**
-     * ¸ù¾Ýdata²ÎÊý¼ÓÔØÍ¼Ïñµ½Ò»¸öImageView.
-     * (ÖØÐ´ {@link ImageWorker#processBitmap(Object)} ¶¨Òå´¦ÀíÂß¼­.
-     * Èç¹û{@link ImageCache}ÒÑÊ¹ÓÃ {@link ImageWorker#setImageCache(ImageCache)}À´ÉèÖÃÁË£¬ÄÚ´æºÍ´ÅÅÌ»º´æ½«±»Ê¹ÓÃ¡£
-     * Èç¹ûÍ¼ÏñÔÚÄÚ´æ»º´æÖÐ·¢ÏÖ£¬Á¢¼´ÉèÖÃ
-     * ·ñÔò {@link AsyncTask} ½«»á´´½¨È¥Òì²½¼ÓÔØbitmap
+     * ï¿½ï¿½ï¿½ï¿½dataï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Ò»ï¿½ï¿½ImageView.
+     * (ï¿½ï¿½Ð´ {@link ImageWorker#processBitmap(Object)} ï¿½ï¿½ï¿½å´¦ï¿½ï¿½ï¿½ß¼ï¿½.
+     * ï¿½ï¿½ï¿½{@link ImageCache}ï¿½ï¿½Ê¹ï¿½ï¿½ {@link ImageWorker#setImageCache(ImageCache)}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½Ú´ï¿½Í´ï¿½ï¿½Ì»ï¿½ï¿½æ½«ï¿½ï¿½Ê¹ï¿½Ã¡ï¿½
+     * ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½Ú´æ»ºï¿½ï¿½ï¿½Ð·ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     * ï¿½ï¿½ï¿½ï¿½ {@link AsyncTask} ï¿½ï¿½ï¿½á´´ï¿½ï¿½È¥ï¿½ì²½ï¿½ï¿½ï¿½ï¿½bitmap
      * 
      * Load an image specified by the data parameter into an ImageView (override
      * {@link ImageWorker#processBitmap(Object)} to define the processing logic). A memory and disk
@@ -94,7 +95,7 @@ public abstract class ImageWorker {
 
     /**
      * 
-     * Õâ¸öÀàÊÇÎªÁËÓ­ºÏ×÷Õß×Ô¼º¹¹ÔìµÄÒ»¸öÍ¼Æ¬urlÊý×é¹¹³ÉµÄadapter¶øÐ´£¬Ò²ÊÇÒ»Ñùµ÷ÓÃ{@link ImageWorker#loadImage(Object data, ImageView imageView)} Õâ¸ö·½·¨À´¼ÓÔØÍ¼Æ¬
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ó­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í¼Æ¬urlï¿½ï¿½ï¿½é¹¹ï¿½Éµï¿½adapterï¿½ï¿½Ð´ï¿½ï¿½Ò²ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½{@link ImageWorker#loadImage(Object data, ImageView imageView)} ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
      * Load an image specified from a set adapter into an ImageView (override
      * {@link ImageWorker#processBitmap(Object)} to define the processing logic). A memory and disk
      * cache will be used if an {@link ImageCache} has been set using
@@ -181,8 +182,8 @@ public abstract class ImageWorker {
     }
 
     /**
-     * µ±Ç°imageview Ã»ÓÐÔÚ½øÐÐ¹¤×÷£¬»òÕßµ±Ç°ÈÎÎñ±»ÖÐÖ¹£¬¾Í·µ»Øtrue
-     * Èç¹ûµ±Ç°µÄÈÎÎñÒÑ¾­½øÈë×èÈû×´Ì¬£¬ÊÇ²»¿ÉÍ£Ö¹µÄ£¬·µ»Øfalse
+     * ï¿½ï¿½Ç°imageview Ã»ï¿½ï¿½ï¿½Ú½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ßµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½true
+     * ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½Ç²ï¿½ï¿½ï¿½Í£Ö¹ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½false
      * 
      * Returns true if the current work has been canceled or if there was no work in
      * progress on this image view.
@@ -315,9 +316,7 @@ public abstract class ImageWorker {
 
         public AsyncDrawable(Resources res, Bitmap bitmap, BitmapWorkerTask bitmapWorkerTask) {
             super(res, bitmap);
-
-            bitmapWorkerTaskReference =
-                new WeakReference<BitmapWorkerTask>(bitmapWorkerTask);
+            bitmapWorkerTaskReference = new WeakReference<BitmapWorkerTask>(bitmapWorkerTask);
         }
 
         public BitmapWorkerTask getBitmapWorkerTask() {
@@ -334,7 +333,7 @@ public abstract class ImageWorker {
     private void setImageBitmap(ImageView imageView, Bitmap bitmap) {
         if (mFadeInBitmap) {
             // Transition drawable with a transparent drwabale and the final bitmap
-            final TransitionDrawable td =
+            @SuppressLint("ResourceAsColor") final TransitionDrawable td =
                     new TransitionDrawable(new Drawable[] {
                             new ColorDrawable(android.R.color.transparent),
                             new BitmapDrawable(mContext.getResources(), bitmap)
